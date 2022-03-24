@@ -5,8 +5,7 @@ QtWidgetsApplication1::QtWidgetsApplication1(QWidget* parent)
 	: QMainWindow(parent)
 {
 
-
-
+	
 
 	QLabel* timeLabel = new QLabel(this);
 	QLabel* bTimeLabel = new QLabel(this);
@@ -31,7 +30,7 @@ QtWidgetsApplication1::QtWidgetsApplication1(QWidget* parent)
 	bClock->set(10, 59, 59);
 	bClock->print();
 
-
+	this->showMaximized();
 	this->show();
 
 }
