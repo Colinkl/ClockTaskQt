@@ -5,7 +5,6 @@ void Clock::print()
 {
 
 	label->setFrameStyle(QFrame::NoFrame);
-	label->setGeometry(10,100,100,100);
 	label->setText(QString("%1 : %2 : %3").arg(this->hh).arg(this->mm).arg(this->ss));
 }
 

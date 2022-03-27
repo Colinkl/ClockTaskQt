@@ -4,12 +4,20 @@
 QtWidgetsApplication1::QtWidgetsApplication1(QWidget* parent)
 	: QMainWindow(parent)
 {
-	QLabel* timeLabel = new QLabel(this);
-	QLabel* bTimeLabel = new QLabel(this);
+	QWidget* widget = new QWidget;
 
-	button = new QPushButton("tick", this);
-	button->setGeometry(QRect(QPoint(100, 500), QSize(200, 50)));
+	QLabel* timeLabel = new QLabel(widget);
+	QLabel* bTimeLabel = new QLabel(widget);
+
+
+	button = new QPushButton("tick", widget);
 	connect(button, &QPushButton::released, this, &QtWidgetsApplication1::handleButton);
+
+	QGridLayout* layout = new QGridLayout;
+	layout->addWidget(timeLabel, 0, 0);
+	layout->addWidget(bTimeLabel, 0, 1);
+	layout->addWidget(button, 1, 0, 1, 2);
+	widget->setLayout(layout);
 
 	clock = new Clock(timeLabel);
 
@@ -23,7 +31,7 @@ QtWidgetsApplication1::QtWidgetsApplication1(QWidget* parent)
 	bClock->set(10, 59, 59);
 	bClock->print();
 
-	this->showMaximized();
+	this->setCentralWidget(widget);
 	this->show();
 }
 

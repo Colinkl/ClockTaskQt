@@ -10,9 +10,9 @@ MAKEFILE      = Makefile
 
 EQ            = =
 
-first: release
-install: release-install
-uninstall: release-uninstall
+first: debug
+install: debug-install
+uninstall: debug-uninstall
 QMAKE         = D:\Qt\qtcreator-6.0.2\msvc2019_64\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -37,31 +37,10 @@ RES_FILE      =
 SED           = $(QMAKE) -install sed
 MOVE          = move
 SUBTARGETS    =  \
-		release \
-		debug
+		debug \
+		release
 
 
-release: $(MAKEFILE) FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Release
-release-make_first: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Release 
-release-all: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Release all
-release-clean: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Release clean
-release-distclean: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Release distclean
-release-install: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Release install
-release-uninstall: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Release uninstall
 debug: $(MAKEFILE) FORCE
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	$(MAKE) -f $(MAKEFILE).Debug
@@ -83,6 +62,27 @@ debug-install: FORCE
 debug-uninstall: FORCE
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	$(MAKE) -f $(MAKEFILE).Debug uninstall
+release: $(MAKEFILE) FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Release
+release-make_first: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Release 
+release-all: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Release all
+release-clean: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Release clean
+release-distclean: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Release distclean
+release-install: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Release install
+release-uninstall: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Release uninstall
 
 Makefile: ..\QtWidgetsApplication1\QtWidgetsApplication1.pro D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\win32-msvc\qmake.conf D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\spec_pre.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\common\windows-desktop.conf \
@@ -295,16 +295,16 @@ Makefile: ..\QtWidgetsApplication1\QtWidgetsApplication1.pro D:\Qt\qtcreator-6.0
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\resolve_config.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\exclusive_builds_post.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\default_post.prf \
+		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\qml_debug.prf \
+		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\entrypoint.prf \
+		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\precompile_header.prf \
+		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\warn_on.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\qt.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\resources_functions.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\resources.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\moc.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\win32\opengl.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\uic.prf \
-		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\qml_debug.prf \
-		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\entrypoint.prf \
-		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\precompile_header.prf \
-		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\warn_on.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\qmake_use.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\file_copies.prf \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\win32\windows.prf \
@@ -316,11 +316,13 @@ Makefile: ..\QtWidgetsApplication1\QtWidgetsApplication1.pro D:\Qt\qtcreator-6.0
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Widgets.prl \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Gui.prl \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Core.prl \
+		D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6EntryPoint.prl \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\build_pass.prf \
 		..\QtWidgetsApplication1\QtWidgetsApplication1.qrc \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Widgetsd.prl \
 		D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Guid.prl \
-		D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Cored.prl
+		D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Cored.prl \
+		D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6EntryPointd.prl
 	$(QMAKE) -o Makefile ..\QtWidgetsApplication1\QtWidgetsApplication1.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\spec_pre.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\common\windows-desktop.conf:
@@ -533,16 +535,16 @@ D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\win32\default_pre.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\resolve_config.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\exclusive_builds_post.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\default_post.prf:
+D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\qml_debug.prf:
+D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\entrypoint.prf:
+D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\precompile_header.prf:
+D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\warn_on.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\qt.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\resources_functions.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\resources.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\moc.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\win32\opengl.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\uic.prf:
-D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\qml_debug.prf:
-D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\entrypoint.prf:
-D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\precompile_header.prf:
-D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\warn_on.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\qmake_use.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\file_copies.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\win32\windows.prf:
@@ -554,43 +556,48 @@ D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\lex.prf:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Widgets.prl:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Gui.prl:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Core.prl:
+D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6EntryPoint.prl:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\mkspecs\features\build_pass.prf:
 ..\QtWidgetsApplication1\QtWidgetsApplication1.qrc:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Widgetsd.prl:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Guid.prl:
 D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6Cored.prl:
+D:\Qt\qtcreator-6.0.2\msvc2019_64\lib\Qt6EntryPointd.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\QtWidgetsApplication1\QtWidgetsApplication1.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
 
 qmake_all: FORCE
 
-make_first: release-make_first debug-make_first  FORCE
-all: release-all debug-all  FORCE
-clean: release-clean debug-clean  FORCE
-distclean: release-distclean debug-distclean  FORCE
+make_first: debug-make_first release-make_first  FORCE
+all: debug-all release-all  FORCE
+clean: debug-clean release-clean  FORCE
+	-$(DEL_FILE) QtWidgetsApplication1.vc.pdb
+	-$(DEL_FILE) QtWidgetsApplication1.ilk
+	-$(DEL_FILE) QtWidgetsApplication1.idb
+distclean: debug-distclean release-distclean  FORCE
 	-$(DEL_FILE) Makefile
-	-$(DEL_FILE) .qmake.stash
+	-$(DEL_FILE) .qmake.stash QtWidgetsApplication1.pdb
 
-release-mocclean:
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Release mocclean
 debug-mocclean:
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	$(MAKE) -f $(MAKEFILE).Debug mocclean
-mocclean: release-mocclean debug-mocclean
-
-release-mocables:
+release-mocclean:
 	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Release mocables
+	$(MAKE) -f $(MAKEFILE).Release mocclean
+mocclean: debug-mocclean release-mocclean
+
 debug-mocables:
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	$(MAKE) -f $(MAKEFILE).Debug mocables
-mocables: release-mocables debug-mocables
+release-mocables:
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Release mocables
+mocables: debug-mocables release-mocables
 
 check: first
 
 benchmark: first
 FORCE:
 
-$(MAKEFILE).Release: Makefile
 $(MAKEFILE).Debug: Makefile
+$(MAKEFILE).Release: Makefile

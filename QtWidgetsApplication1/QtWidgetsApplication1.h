@@ -8,6 +8,8 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QRect>
+#include <qwidget>
+
 class QtWidgetsApplication1 : public QMainWindow
 {
 	Q_OBJECT
